@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Copyright (C) 2014 Erik Dannenberg <erik.dannenberg@bbe-consulting.de>
 #
