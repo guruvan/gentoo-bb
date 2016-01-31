@@ -1,0 +1,6 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+RUN eselect java-vm set system 1

@@ -1,0 +1,9 @@
+FROM ${NAMESPACE}/jdk-icedtea
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+ENV PATH /usr/local/aws/ec2/bin:$PATH
+ENV EC2_HOME /usr/local/aws/ec2
+ENV JAVA_HOME /usr/lib/jvm/icedtea-bin-7/jre
+
