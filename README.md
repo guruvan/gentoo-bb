@@ -1,6 +1,26 @@
 gentoo-bb
 =========
 
+## Customizations from upstream
+ 
+  * uclibc busybox
+  * added images
+     - go-ipfs
+     - encompass-mercury (Any-Coin Electrum Server) 
+     - awstools
+
+  * 23 Jan 2016 snapshots
+
+Images are available: 
+ ```
+ docker pull guruvan/image-name
+ ```
+
+Future update will include automated building (not via Dockerhub)
+
+Original README
+===============
+
 Build framework to produce minimal root file systems based on [Gentoo][]. It's primarily intended for maintaining an organization's
 [LXC][] base image stack(s), but can probably fairly easy (ab)used for other use cases involving a custom root fs, cross compiling comes to mind.
 
