@@ -1,6 +1,0 @@
-FROM ${NAMESPACE}/bash
-MAINTAINER ${MAINTAINER}
-
-ADD rootfs.tar /
-
-RUN eselect ruby set ruby21 2> /dev/null

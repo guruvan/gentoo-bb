@@ -1,8 +1,12 @@
 .project
 tmp/
-bb-builder/portage-data/busybox
 Dockerfile
 rootfs.tar
 push.conf
-bb-builder/*/PACKAGES.md
+bob-core/PACKAGES.md
+dock/*/builder/PACKAGES.md
+dock/*
+docker-data/
+!dock/gentoobb
+!dock/dummy
 
