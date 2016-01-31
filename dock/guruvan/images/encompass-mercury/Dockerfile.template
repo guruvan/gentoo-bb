@@ -1,0 +1,20 @@
+FROM ${NAMESPACE}/py2gcc
+MAINTAINER ${MAINTAINER}
+
+EXPOSE 50001 50002 8080
+
+ADD rootfs.tar /
+
+RUN git clone https://github.com/mazaclub/encompass-mercury.git /app \
+      && cd /app \
+      && git checkout master \
+      && echo "Installing deps and Encompass-Mercury" \
+      && echo "plyvel"     > requirements.txt  \
+      && echo "jsonrpclib" > requirements.txt  \
+      && echo "irc>=11" > requirements.txt  \
+      && echo "coinhash==1.1.4"   > requirements.txt  \
+      && pip install  -r requirements.txt \
+      && python setup.py install
+
+
+
