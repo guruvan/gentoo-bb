@@ -1,7 +1,8 @@
 #
 # build config
 #
-PACKAGES="sys-libs/readline net-misc/curl app-admin/eselect app-portage/portage-utils sys-apps/grep app-shells/bash"
+PACKAGES="net-analyzer/tcpdump net-analyzer/traceroute net-analyzer/nmap net-misc/telnet-bsd net-misc/socat net-dns/bind-tools net-misc/wget net-analyzer/iftop"
+
 
 #
 # this method runs in the bb builder container just before starting the build of the rootfs
