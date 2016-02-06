@@ -80,6 +80,7 @@ configure_rootfs_build()
 #
 finish_rootfs_build()
 {
+    mkdir -p $EMERGE_ROOT/etc/service/.s6-svscan $EMERGE_ROOT/service
     mkdir -pv /home/coin
     mkdir /export 
     log_as_installed "manual install" "mazaplex" "https://github.com/mazaclub/btcplex"

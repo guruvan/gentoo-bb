@@ -2,17 +2,7 @@ FROM ${NAMESPACE}/bash
 MAINTAINER ${MAINTAINER}
 
 ADD rootfs.tar /
-#ENV IPFS_PATH /data/ipfs
-#ENV PATH /opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-#RUN echo "ipfs:x:1000:1000:Linux User,,,:/data:n" >> /etc/passwd \
-#     && echo "ipfs:x:1000:" >> /etc/group \
-#      && echo "ipfs:!:16824:0:99999:7:::" >> /etc/shadow
-#USER ipfs
-#WORKDIR /data/ipfs
-#EXPOSE 8080 4001 5001 
-
-#VOLUME ["/export","/data/ipfs"]
 
 
-ENTRYPOINT ["s6-supervise"]
-CMD	   ["/etc/service/mazaplex/"
+ENTRYPOINT ["s6-svscan"]
+CMD	   ["/etc/service/"]

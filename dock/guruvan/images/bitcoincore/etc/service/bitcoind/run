@@ -1,5 +1,5 @@
 #!/bin/bash 
-COIN=${COIN:-maza}
+COIN=${COIN:-bitcoin}
 test -f /etc/runtime.env  && source /etc/runtime.env
 if [ ! -f  /etc/${COIN}-daemon.env ] ; then
 cat >/etc/${COIN}-daemon.env<<END

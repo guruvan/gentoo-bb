@@ -2,11 +2,19 @@ FROM ${NAMESPACE}/bash
 MAINTAINER ${MAINTAINER}
 
 ADD rootfs.tar /
-COPY libstdc++.so.6 /usr/lib64/
-COPY libstdc++.so.6 /usr/lib/x86_64-linux-gnu/
+#RUN mkdir -pv /etc/service/bitcoind
+ADD  home/* /home/
+ADD  etc/* /etc
+COPY root/bitcoin.conf /root/bitcoin.conf
 
 EXPOSE 8333 8332
 
 VOLUME ["/home/coin"]
+RUN   chmod 700 /etc/service/bitcoind/run \
+      && adduser --disabled-password --gecos "bitcoin" -u 2211 -s /bin/bash coin \
+      && chown -R coin.coin /home/coin \
+      && chmod 600 /home/coin/.bitcoin/bitcoin.conf 
 
-ENTRYPOINT ["/bin/bash"]
+
+ENTRYPOINT ["s6-supervise"]
+CMD  ["/etc/service/bitcoind/"]
