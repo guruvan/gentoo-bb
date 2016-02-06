@@ -1,5 +1,5 @@
 ### guruvan/nginx-php5.5:20160123
-Built: Thu Jan 28 09:27:39 UTC 2016
+Built: Thu Feb  4 07:28:22 UTC 2016
 
 Image Size: 103.7 MB
 #### Installed
@@ -72,7 +72,7 @@ www-servers/nginx-1.9.7 | `http http-cache http2 pcre ssl threads -aio -debug -i
 **FROM guruvan/openssl** |
 app-misc/ca-certificates-20140927.3.17.2 | `cacert`
 app-misc/c_rehash-1.7-r1 | ``
-dev-libs/openssl-1.0.2e | `asm bindist tls-heartbeat zlib -gmp -kerberos -rfc3779 -sctp -static-libs {-test} -vanilla`
+dev-libs/openssl-1.0.2f | `asm bindist tls-heartbeat zlib -gmp -kerberos -rfc3779 -sctp -static-libs {-test} -vanilla`
 sys-apps/debianutils-4.4 | `-static`
 sys-libs/zlib-1.2.8-r1 | `-minizip -static-libs`
 **FROM guruvan/s6** |

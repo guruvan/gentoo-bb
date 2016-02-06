@@ -1,0 +1,12 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+COPY libstdc++.so.6 /usr/lib64/
+COPY libstdc++.so.6 /usr/lib/x86_64-linux-gnu/
+
+EXPOSE 8333 8332
+
+VOLUME ["/home/coin"]
+
+ENTRYPOINT ["/bin/bash"]

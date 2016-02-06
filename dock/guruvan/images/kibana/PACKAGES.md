@@ -1,5 +1,5 @@
 ### guruvan/kibana:20160123
-Built: Thu Jan 28 07:42:08 UTC 2016
+Built: Thu Feb  4 05:44:00 UTC 2016
 
 Image Size: 131.7 MB
 #### Installed

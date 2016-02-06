@@ -1,0 +1,20 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+EXPOSE 12832 12835
+#RUN mkdir -pv /etc/service/mazad
+ADD  home/* /home/
+ADD  etc/* /etc
+COPY root/maza.conf /root/maza.conf
+
+VOLUME ["/home/coin"]
+RUN   chmod 700 /etc/service/mazad/run \
+      && adduser --disabled-password --gecos "maza" -u 2211 -s /bin/bash coin \
+      && chown -R coin.coin /home/coin \
+      && chmod 600 /home/coin/.maza/maza.conf 
+
+
+ENTRYPOINT ["s6-supervise"]
+CMD  ["/etc/service/mazad/"]

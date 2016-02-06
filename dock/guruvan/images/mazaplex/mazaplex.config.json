@@ -1,0 +1,11 @@
+{
+	"bitcoind_rpc_url": "http://user:pass@localhost:128332",
+	"bitcoind_blocks_path": "/home/coin/.maza/blocks",
+	"redis_host": "redis:6379",
+	"ssdb_host": "ssdb:6381",
+	"leveldb_path": "/home/coin/btcplex_leveldb",
+	"app_url": "https:/mazaplex.mazaclub",
+	"app_port": 6033,
+	"app_api_rate_limited": true,
+	"app_templates_path": "templates"
+}

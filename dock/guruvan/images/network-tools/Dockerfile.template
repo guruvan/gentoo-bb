@@ -1,0 +1,6 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+CMD ["/bin/bash"]

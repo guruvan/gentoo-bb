@@ -1,0 +1,75 @@
+#!/bin/bash 
+COIN=${COIN:-maza}
+test -f /etc/container_environment.sh && source /etc/container_environment.sh
+test -f /etc/${COIN}-daemon.env && source /etc/${COIN}-daemon.env
+
+TXINDEX=${TXINDEX:-0}
+REINDEX=${REINDEX:-0}
+USER=${USER:-coin}
+COINDIR=${COINDIR:-/home/coin/.${COIN}}
+RPCPASSWORD=${RPCPASSWORD}
+RPCPORT=${RPCPORT:-12835}
+P2PPORT=${P2PPORT:-12832}
+
+# 
+sed '/reindex/d' ${COINDIR}/${COIN}.conf > /tmp/newconf
+sed  '/txindex/d' /tmp/newconf > "${COINDIR}"/"${COIN}".conf
+
+
+mk_rpcpass () {
+   echo "$(date +%m-%d:%Y:%H:%M) making rpcpassword"
+   sed -e '/rpcpassword/d' "${COINDIR}"/${COIN}.conf > /tmp/"${COIN}".newconf
+   cp /tmp/${COIN}.newconf  "${COINDIR}"/${COIN}.conf
+   pass="$(apg -a0 -n1 -m64 -x64)" 
+   echo "rpcpassword=${pass}" >> "${COINDIR}"/${COIN}.conf   
+}
+
+echo "$(date +%m-%d:%Y:%H:%M) Checking to see if this is the first known start of ${COIN}coind ${COINDIR}"
+rpcpwd=$(grep rpcpassword ${COINDIR}/${COIN}.conf|awk -F\= '{print $2}')
+if [ !  -f "${COINDIR}"/${COIN}.conf ] 
+then 
+  test -d "${COINDIR}" || mkdir -pv "${COINDIR}"
+  cp -av /root/${COIN}.conf "${COINDIR}"/${COIN}.conf
+  mk_rpcpass
+fi
+if [ -z "${rpcpwd}" ] 
+then
+  mk_rpcpass
+fi
+if [ "${REINDEX}" = "1" ] 
+then
+   grep "reindex=1" "${COINDIR}"/${COIN}.conf ||  echo "reindex=1" >> "${COINDIR}"/${COIN}.conf
+  
+fi
+if [ "${TXINDEX}" = "1" ]
+then 
+  grep "txindex=1" "${COINDIR}"/${COIN}.conf/ ||  echo "txindex=1" >> "${COINDIR}"/${COIN}.conf
+fi
+if [ "${LISTEN}" = "1" ] 
+then 
+  grep "listen=1" "${COINDIR}"/${COIN}.conf || echo "listen=1" >> "${COINDIR}"/${COIN}.conf
+fi
+if [ ! -z "${P2PPORT}" ]
+then
+   sed '/^port\=/d' "${COINDIR}"/${COIN}.conf > /tmp/newconf
+   echo "port=${P2PPORT}" >> "${COINDIR}"/${COIN}.conf
+   mv /tmp/newconf "${COINDIR}"/${COIN}.conf
+fi
+if [ ! -z "${RPCPORT}" ]
+then
+   sed '/^rpcport/d' "${COINDIR}"/${COIN}.conf > /tmp/newconf
+   echo "rpcport=${RPCPORT}" >> "${COINDIR}"/${COIN}.conf
+   mv /tmp/newconf "${COINDIR}"/${COIN}.conf
+fi
+allowip=$(grep -m 1 "rpcallowip=" ${COINDIR}/${COIN}.conf | awk -F\= '{print $2}')
+test -z ${allowip} && if [ -f /home/${USER}/.${COIN}/coin-daemon_rpcallowip.conf ]
+ then
+   while read line ; do
+     echo "rpcallowip=${line}"  >> "${COINDIR}"/${COIN}.conf
+   done < /home/${USER}/.${COIN}/coin-daemon_rpcallowip.conf
+ fi
+## TODO Add rpcallowip and additional server settings
+
+echo "$(date +%m-%d:%Y:%H:%M) Starting ${COIN}d"
+chown -R ${USER}.${USER} ${COINDIR} 
+exec su - ${USER} -c "/usr/bin/${COIN}d" 
