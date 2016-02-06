@@ -53,6 +53,8 @@ sys-apps/coreutils-8.23 | `acl nls (xattr) -caps -gmp -multicall (-selinux) -sta
 sys-apps/file-5.22 | `zlib -python -static-libs`
 <<<<<<< HEAD
 sys-apps/grep-2.21-r1 | `nls pcre -static`
+=======
+>>>>>>> 9c7ff541fe0f6569fcc270b01688c412e48ada8e
 sys-apps/sed-4.2.1-r1 | `acl nls (-selinux) -static`
 sys-libs/ncurses-5.9-r5 | `cxx unicode -ada -debug -doc -gpm -minimal (-profile) -static-libs -tinfo -trace`
 sys-libs/ncurses-5.9-r99 | `cxx unicode -ada -gpm -static-libs -tinfo`
@@ -60,7 +62,11 @@ sys-libs/readline-6.3_p8-r2 | `-static-libs -utils`
 **FROM guruvan/openssl** |
 app-misc/ca-certificates-20140927.3.17.2 | `cacert`
 app-misc/c_rehash-1.7-r1 | ``
+<<<<<<< HEAD
 dev-libs/openssl-1.0.2f | `asm bindist tls-heartbeat zlib -gmp -kerberos -rfc3779 -sctp -static-libs {-test} -vanilla`
+=======
+dev-libs/openssl-1.0.2e | `asm bindist tls-heartbeat zlib -gmp -kerberos -rfc3779 -sctp -static-libs {-test} -vanilla`
+>>>>>>> 9c7ff541fe0f6569fcc270b01688c412e48ada8e
 sys-apps/debianutils-4.4 | `-static`
 sys-libs/zlib-1.2.8-r1 | `-minizip -static-libs`
 **FROM guruvan/s6** |
