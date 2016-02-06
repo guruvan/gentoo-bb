@@ -16,5 +16,13 @@ RUN git clone https://github.com/mazaclub/encompass-mercury.git /app \
       && pip install  -r requirements.txt \
       && python setup.py install
 
+EXPOSE		50001 50002 8000
 
+VOLUME		["/home/coin","/var/encompass-mercury"]
 
+ADD		./app /app
+ADD		./etc /etc
+
+RUN		chmod +x /etc/service/encompass-mercury/run
+ENTRYPOINT	["s6-svcscan""]
+CMD		["/etc/service"]
