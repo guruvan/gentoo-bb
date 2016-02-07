@@ -1,7 +1,7 @@
 ### guruvan/bob-core:20160123
-Built: Thu Jan 28 00:59:21 UTC 2016
+Built: Thu Feb  4 03:27:56 UTC 2016
 
-Image Size: 1.708 GB
+Image Size: 1.8 GB
 ### guruvan/bob-core:20160104
 Built: Thu Jan 28 00:42:28 UTC 2016
 

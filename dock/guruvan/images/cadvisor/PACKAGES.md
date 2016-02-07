@@ -1,5 +1,5 @@
 ### guruvan/cadvisor:20160123
-Built: Thu Jan 28 06:57:04 UTC 2016
+Built: Thu Feb  4 04:48:36 UTC 2016
 
 Image Size: 35.43 MB
 #### Installed

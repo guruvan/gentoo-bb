@@ -1,0 +1,70 @@
+#!/bin/sh
+set -e
+# note this depends on being on a phusion base image
+# other applicatiosn need another method to pass ENV values
+if [ ! -f /etc/encompass-mercury.env ] ; then
+cat >/etc/encompass-mercury.env<<END
+USER=${USER:-coin}
+ENCOMPASS_MERCURY_HOSTNAME=${ENCOMPASS_MERCURY_HOSTNAME:-${HOSTNAME}}
+ENCOMPASS_MERCURY_PORT=${ENCOMPASS_MERCURY_PORT:-50001}
+ENCOMPASS_MERCURY_SSLPORT=${ENCOMPASS_MERCURY_SSL_PORT:-50002}
+COIND=${COIND:-localhost}
+COINDIR=${COINDIR:-/home/${USER}/.${COIN}}
+RPCPORT=${RPCPORT:-8888}
+RPCUSER=${RPCUSER:-$(grep rpcuser "${COINDIR}"/${COIN}.conf |awk -F= '{print $2}')}
+RPCPASSWORD=${RPCPASSWORD:-$(grep rpcpassword "${COINDIR}"/${COIN}.conf |awk -F= '{print $2}')}
+txidx=$(grep "txindex=" "${COINDIR}"/${COIN}.conf |awk -F= '{print $2}')
+TXINDEX=${TXINDEX:-${txidx}}
+ENCOMPASS_MERCURY_PASSWORD=$(egrep '^password =' /etc/encompass-mercury.conf|awk -F= '{print $2}')
+ENCOMPASS_MERCURY_IRCNICK=${ENCOMPASS_MERCURY_IRCNICK:-${COIN}_mazaclub}
+END
+cp /etc/encompass-mercury.env /app/encompass-mercury.env
+. /etc/encompass-mercury.env
+
+if [ -z ${COIN} ]
+then
+  COIN=${COIN:-mazacoin}
+  echo "export COIN=${COIN}" >> /etc/container_environment.sh
+fi
+if [ -z ${COIN_SYM} ]
+then
+  COIN_SYM=${COIN_SYM:-mzc}
+  echo "export COIN_SYM=${COIN_SYM}" >> /etc/container_environment.sh
+fi
+if [ -z ${COINDIR} ]
+then
+  COINDIR=${COINDIR:-/home/coin/.${COIN}}
+  echo "export COINDIR=${COINDIR}" >> /etc/container_environment.sh
+fi
+APP=encompass-mercury
+USER=${USER:-coin}
+
+echo "$(date) Waiting for ${COIN}.conf in ${COINDIR}"
+while true
+do
+  test -f "${COINDIR}"/${COIN}.conf && break
+  sleep 1
+done
+echo "$(date) Allowing ${COIN}d 30sec to startup"
+sleep 30
+
+echo "Starting ${APP} for ${COIN}"
+cd /app
+
+
+if [ -d /home/${USER} ] ; then
+   chown ${USER}.${USER} /home/${USER}
+fi
+
+chmod +x /app/start.sh
+chown -R ${USER}.${USER} /app
+touch /var/log/encompass-mercury.log
+touch /var/log/encompass-mercury-mzc.log
+chown ${USER}.${USER} /var/log/encompass-mercury.log
+chown ${USER}.${USER} /var/log/encompass-mercury-mzc.log
+chown -R ${USER}.${USER} /var/encompass-mercury
+chown ${USER}.${USER} /etc/encompass-mercury.conf
+cp /etc/container_environment.sh /app/encompass-mercury.env
+chown ${USER}.${SUSER} /app/encompass-mercury.env
+chown -R ${USER}.${USER} /home/${USER}
+exec su ${USER} -c /app/start.sh

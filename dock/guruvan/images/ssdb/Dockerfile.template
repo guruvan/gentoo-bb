@@ -1,0 +1,7 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+ENTRYPOINT ["s6-svcscan"]
+CMD ["/etc/service"]

@@ -1,5 +1,5 @@
 ### guruvan/redis:20160123
-Built: Thu Jan 28 09:48:10 UTC 2016
+Built: Thu Feb  4 07:48:07 UTC 2016
 
 Image Size: 13.47 MB
 #### Installed

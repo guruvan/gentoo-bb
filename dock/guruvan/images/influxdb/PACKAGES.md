@@ -1,5 +1,5 @@
 ### guruvan/influxdb:20160123
-Built: Thu Jan 28 07:38:33 UTC 2016
+Built: Thu Feb  4 05:39:43 UTC 2016
 
 Image Size: 72.57 MB
 #### Installed

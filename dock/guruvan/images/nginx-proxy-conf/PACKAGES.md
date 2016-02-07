@@ -1,5 +1,5 @@
 ### guruvan/nginx-proxy-conf:20160123
-Built: Thu Jan 28 09:28:40 UTC 2016
+Built: Thu Feb  4 07:29:05 UTC 2016
 
 Image Size: 21.68 MB
 #### Installed
