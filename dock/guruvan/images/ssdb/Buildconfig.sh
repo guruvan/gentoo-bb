@@ -30,6 +30,8 @@ configure_rootfs_build()
 finish_rootfs_build()
 {
     
+    # s6 folders
+    mkdir -p $EMERGE_ROOT/etc/service/.s6-svscan $EMERGE_ROOT/service
     mkdir -pv ${EMERGE_ROOT}/usr/local/
     cp -av /usr/local/ssdb ${EMERGE_ROOT}/usr/local/
     log_as_installed "manual install" "ssdb" "https://github.com/ideawu/ssdb"

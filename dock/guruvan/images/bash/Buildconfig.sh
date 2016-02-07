@@ -1,9 +1,7 @@
 #
 # build config
 #
-<<<<<<< HEAD
 PACKAGES="sys-libs/readline net-misc/curl app-admin/eselect app-portage/portage-utils app-shells/bash sys-apps/grep"
-PACKAGES="sys-libs/readline net-misc/curl app-admin/eselect app-portage/portage-utils sys-apps/grep app-shells/bash"
 
 #
 # this method runs in the bb builder container just before starting the build of the rootfs

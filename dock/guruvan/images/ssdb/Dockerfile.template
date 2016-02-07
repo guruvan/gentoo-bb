@@ -3,4 +3,5 @@ MAINTAINER ${MAINTAINER}
 
 ADD rootfs.tar /
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["s6-svcscan"]
+CMD ["/etc/service"]
