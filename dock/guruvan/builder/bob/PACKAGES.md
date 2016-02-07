@@ -1,7 +1,7 @@
 ### guruvan/bob:20160123
-Built: Thu Jan 28 01:01:26 UTC 2016
+Built: Thu Feb  4 03:30:01 UTC 2016
 
-Image Size: 1.763 GB
+Image Size: 1.855 GB
 #### Installed
 None.
 #### Inherited

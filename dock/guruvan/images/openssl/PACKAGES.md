@@ -1,5 +1,5 @@
 ### guruvan/openssl:20160123
-Built: Sat Jan 30 21:03:40 UTC 2016
+Built: Thu Feb  4 03:51:59 UTC 2016
 
 Image Size: 15.99 MB
 #### Installed
@@ -7,7 +7,7 @@ Package | USE Flags
 --------|----------
 app-misc/ca-certificates-20140927.3.17.2 | `cacert`
 app-misc/c_rehash-1.7-r1 | ``
-dev-libs/openssl-1.0.2e | `asm bindist tls-heartbeat zlib -gmp -kerberos -rfc3779 -sctp -static-libs {-test} -vanilla`
+dev-libs/openssl-1.0.2f | `asm bindist tls-heartbeat zlib -gmp -kerberos -rfc3779 -sctp -static-libs {-test} -vanilla`
 sys-apps/debianutils-4.4 | `-static`
 sys-libs/zlib-1.2.8-r1 | `-minizip -static-libs`
 #### Inherited
