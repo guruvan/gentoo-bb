@@ -1,18 +1,21 @@
-### guruvan/python2:20160123
-Built: Thu Feb  4 07:37:54 UTC 2016
+### guruvan/python2:20160204
+Built: Mon Feb  8 18:46:19 UTC 2016
 
-Image Size: 112.8 MB
+Image Size: 125.1 MB
 #### Installed
 Package | USE Flags
 --------|----------
 app-admin/python-updater-0.11 | ``
+app-arch/tar-1.27.1-r2 | `acl nls (xattr) -minimal (-selinux) -static`
 app-eselect/eselect-python-20111108 | ``
 app-misc/mime-types-9 | ``
+app-misc/pax-utils-1.0.3 | `-caps -python`
 dev-db/sqlite-3.9.2 | `readline -debug -doc -icu -secure-delete -static-libs -tcl {-test} -tools`
 dev-lang/python-2.7.10-r1 | `hardened readline sqlite ssl threads (wide-unicode) xml (-berkdb) -build -doc -examples -gdbm -ipv6 -ncurses -tk -wininst`
 dev-lang/python-exec-2.0.1-r1 | ` `
 dev-libs/expat-2.1.0-r5 | `unicode -examples -static-libs`
 dev-libs/libffi-3.0.13-r1 | `pax`
+dev-libs/popt-1.16-r2 | `nls -static-libs`
 dev-python/CacheControl-0.11.5 | `{-test}`
 dev-python/certifi-2015.11.20 | ` `
 dev-python/cffi-1.2.1 | `-doc {-test}`
@@ -34,10 +37,15 @@ dev-python/py-1.4.30 | `-doc {-test}`
 dev-python/pyasn1-0.1.8 | `-doc`
 dev-python/pycparser-2.14 | `{-test}`
 dev-python/pyopenssl-0.15.1-r1 | `-doc -examples`
+dev-python/pyxattr-0.5.5 | `-doc {-test}`
 dev-python/requests-2.8.1 | `{-test}`
 dev-python/retrying-1.3.3 | ` `
 dev-python/setuptools-18.4 | `{-test}`
 dev-python/six-1.10.0 | `-doc {-test}`
+net-misc/rsync-3.1.2 | `acl iconv xattr -ipv6 -static -stunnel`
+sys-apps/install-xattr-0.5 | ``
+sys-apps/portage-2.2.26 | `(ipc) (xattr) -build -doc -epydoc (-selinux)`
+sys-apps/sandbox-2.10-r1 | `(-multilib)`
 #### Inherited
 Package | USE Flags
 --------|----------
@@ -69,12 +77,6 @@ dev-lang/execline-2.1.1.0 | `-static -static-libs`
 dev-libs/skalibs-2.3.2.0 | `-doc -ipv6 -static-libs`
 sys-apps/s6-2.1.3.0 | `-static`
 *manual install*: entr-3.4 | http://entrproject.org/
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [x] Headers
 - [x] Static Libs

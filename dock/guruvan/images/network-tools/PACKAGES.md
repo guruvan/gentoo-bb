@@ -1,5 +1,5 @@
-### guruvan/network-tools:20160123
-Built: Sun Feb  7 06:10:02 UTC 2016
+### guruvan/network-tools:20160204
+Built: Mon Feb  8 18:29:55 UTC 2016
 
 Image Size: 93.02 MB
 #### Installed
@@ -17,7 +17,7 @@ net-dns/bind-tools-9.10.3_p2 | `ipv6 readline seccomp ssl urandom -doc -gost -gs
 net-libs/libpcap-1.7.4 | `ipv6 -bluetooth -canusb -dbus -netlink -static-libs`
 net-misc/iputils-20121221-r1 | `ipv6 ssl -`
 net-misc/openssh-7.1_p2 | `bindist hpn (pie) ssl -`
-net-misc/socat-1.7.3.0 | `ipv6 readline ssl tcpd`
+net-misc/socat-1.7.3.1 | `ipv6 readline ssl tcpd`
 net-misc/telnet-bsd-1.2-r1 | `nls -xinetd`
 net-misc/wget-1.16.3-r1 | `ipv6 nls pcre ssl zlib -debug -gnutls -idn -ntlm -static {-test} -uuid`
 sys-apps/net-tools-1.60_p20141019041918-r1 | `nls -old-output (-selinux) -static`
@@ -57,12 +57,6 @@ dev-lang/execline-2.1.1.0 | `-static -static-libs`
 dev-libs/skalibs-2.3.2.0 | `-doc -ipv6 -static-libs`
 sys-apps/s6-2.1.3.0 | `-static`
 *manual install*: entr-3.4 | http://entrproject.org/
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [x] Headers
 - [x] Static Libs

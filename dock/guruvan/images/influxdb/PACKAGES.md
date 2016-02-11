@@ -1,7 +1,7 @@
-### guruvan/influxdb:20160123
-Built: Thu Feb  4 05:39:43 UTC 2016
+### guruvan/influxdb:20160204
+Built: Mon Feb  8 15:59:36 UTC 2016
 
-Image Size: 72.57 MB
+Image Size: 77.86 MB
 #### Installed
 Package | USE Flags
 --------|----------
@@ -9,12 +9,6 @@ Package | USE Flags
 #### Inherited
 Package | USE Flags
 --------|----------
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [x] Headers
 - [x] Static Libs

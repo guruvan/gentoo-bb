@@ -1,5 +1,5 @@
-### guruvan/busybox:20160123
-Built: Thu Feb  4 03:48:05 UTC 2016
+### guruvan/busybox:20160204
+Built: Mon Feb  8 12:50:14 UTC 2016
 
 Image Size: 1.265 MB
 #### Installed
