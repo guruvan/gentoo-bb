@@ -4,7 +4,7 @@
 set -e
 
 EMERGE_ROOT="/emerge-root"
-EMERGE_BIN="${EMERGE_BIN:-emerge}"
+EMERGE_BIN="${BOB_EMERGE_BIN:-emerge}"
 EMERGE_OPT="${EMERGE_OPT:-}"
 CONFIG="/config"
 CONFIG_TMP="${CONFIG}/tmp"
@@ -266,6 +266,13 @@ install_gosu()
     log_as_installed "manual install" "gosu-${GOSU_VERSION}" "https://github.com/tianon/gosu/"
 }
 
+download_from_oracle() {
+    wget --no-cookies --no-check-certificate \
+         --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
+         -P /distfiles \
+         "${1}"
+}
+
 source /etc/profile
 
 mkdir -p $EMERGE_ROOT
@@ -273,8 +280,16 @@ mkdir -p $EMERGE_ROOT
 # read config, mounted via build.sh
 [[ -f ${CONFIG}/Buildconfig.sh ]] && source ${CONFIG}/Buildconfig.sh || :
 
+# use BOB_BUILDER_{CHOST,CFLAGS,CXXFLAGS}
+export USE_BUILDER_FLAGS="true"
+source /etc/profile
+
 # call configure bob hook if declared in Buildconfig.sh
 declare -F configure_bob &>/dev/null && configure_bob
+
+# switch back to BOB_{CHOST,CFLAGS,CXXFLAGS}
+unset USE_BUILDER_FLAGS
+source /etc/profile
 
 mkdir -p ${ROOTFS_BACKUP} 
 

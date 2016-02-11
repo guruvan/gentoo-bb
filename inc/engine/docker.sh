@@ -104,6 +104,7 @@ generate_dockerfile()
     done
 
     sed "${SED_PARAM[@]}" \
+        -e 's|${DEF_BUILD_CONTAINER}|'"${DEF_BUILD_CONTAINER}"'|' \
         -e 's/${NAMESPACE}/'"${NAMESPACE}"'/' \
         -e 's/${TAG}/'"${DATE}"'/' \
         -e 's/${MAINTAINER}/'"${AUTHOR}"'/' "${1}/Dockerfile.template" > "${1}/Dockerfile" || \
@@ -176,6 +177,8 @@ get_build_container() {
     elif [[ "${REPO_TYPE}" == "${IMAGE_PATH}" ]]; then
         [[ "${PARENT_IMAGE}" != "scratch" ]] && image_exists "${BUILD_CONTAINER}-${PARENT_IMAGE}" "${BUILDER_PATH}" && \
             BUILD_CONTAINER="${BUILD_CONTAINER}-${PARENT_IMAGE}"
+    elif [[ "${REPO_TYPE}" == "${BUILDER_PATH}" ]] && [[ "$BUILD_FROM" == "false" ]]; then
+        [[ "${PARENT_REPO}" == "${REPO}" ]] && BUILD_CONTAINER=${BUILDER_CORE}
     fi
     [[ "${PARENT_REPO}" == "${BUILD_CONTAINER}" ]] && [[ "${BUILD_FROM}" == "false" ]] && BUILD_CONTAINER=${BUILDER_CORE}
 
