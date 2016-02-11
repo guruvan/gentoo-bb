@@ -1,8 +1,0 @@
-FROM ${NAMESPACE}/jre-oracle
-MAINTAINER ${MAINTAINER}
-
-ADD rootfs.tar /
-
-ENV CLASSPATH /opt/clojure.jar
-
-CMD ["/bin/bash"]

@@ -48,7 +48,7 @@ DL_PATH="${DL_PATH:-${PROJECT_ROOT}/tmp/downloads}"
 source ./build.conf
 
 DATE_ROOT="${DATE?Error \$DATE is not defined.}"
-NAMESPACE_ROOT="${NAMESPACE:-guruvan}"
+NAMESPACE_ROOT="${NAMESPACE:-mazaclub}"
 
 BUILD_OPTS="${BUILD_OPTS:-}"
 

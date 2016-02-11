@@ -86,7 +86,8 @@ run_image() {
     DOCKER_ARGS=("-it" "--hostname" "${2}")
     [[ "${3}" == "true" ]] && DOCKER_ARGS+=("--rm")
     # gogo
-    "${DOCKER}" run "${DOCKER_ARGS[@]}" "${DOCKER_MOUNTS[@]}" "${DOCKER_ENV[@]}" "${IMAGE}" "${CONTAINER_CMD[@]}" ||
+    "${DOCKER}" run --privileged "${DOCKER_ARGS[@]}" "${DOCKER_MOUNTS[@]}" "${DOCKER_ENV[@]}" "${IMAGE}" "${CONTAINER_CMD[@]}" ||
+    #"${DOCKER}" run "${DOCKER_ARGS[@]}" "${DOCKER_MOUNTS[@]}" "${DOCKER_ENV[@]}" "${IMAGE}" "${CONTAINER_CMD[@]}" ||
         die "failed to run image ${IMAGE}"
 }
 
@@ -191,7 +192,8 @@ import_stage3()
 
     # import stage3 image from Gentoo mirrors
     msg "import ${NAMESPACE_ROOT}/stage3-import:${DATE}"
-    bzcat < "$DL_PATH/${STAGE3}" | bzip2 | "${DOCKER}" import - "${NAMESPACE_ROOT}/stage3-import:${DATE}" || die "failed to import"
+    bzcat < "$DL_PATH/${STAGE3}" | bzip2 > "$DL_PATH/${STAGE3}.tar"
+    "${DOCKER}" import "$DL_PATH/${STAGE3}.tar"  "${NAMESPACE_ROOT}/stage3-import:${DATE}" || die "failed to import"
 
     msg "tag ${NAMESPACE_ROOT}/stage3-import:latest"
     "${DOCKER}" tag -f "${NAMESPACE_ROOT}/stage3-import:${DATE}" "${NAMESPACE_ROOT}/stage3-import:latest" || die "failed to tag"

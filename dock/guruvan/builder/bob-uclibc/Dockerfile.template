@@ -1,5 +1,0 @@
-#BUILD_FROM guruvan/bob
-FROM ${NAMESPACE}/bob-uclibc
-MAINTAINER ${MAINTAINER}
-
-CMD ["/bin/bash"]

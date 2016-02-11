@@ -1,9 +1,0 @@
-FROM ${NAMESPACE}/nodejs
-MAINTAINER ${MAINTAINER}
-
-ADD rootfs.tar /
-
-COPY start.sh /start.sh
-RUN  chmod +x /start.sh
-ENTRYPOINT ["/bin/sh", "/start.sh"]
-CMD ["route"]
