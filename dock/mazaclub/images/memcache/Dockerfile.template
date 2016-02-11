@@ -1,0 +1,15 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+ADD etc /etc
+
+RUN ln -s /bin/busybox /bin/find && \
+    chmod +x $(find /etc/service -name run) && \
+    ln -s /etc/s6_finish_default /etc/service/memcache/finish && \
+    ln -s /etc/service/memcache /service
+
+EXPOSE 11211
+
+CMD ["/bin/s6-svscan", "-t0", "/service"]

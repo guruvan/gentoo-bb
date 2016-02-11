@@ -1,0 +1,1320 @@
+diff --git a/Godeps/_workspace/src/github.com/jbenet/go-datastore/flatfs/flatfs.go b/Godeps/_workspace/src/github.com/jbenet/go-datastore/flatfs/flatfs.go
+index 0750211..a613e65 100644
+--- a/Godeps/_workspace/src/github.com/jbenet/go-datastore/flatfs/flatfs.go
++++ b/Godeps/_workspace/src/github.com/jbenet/go-datastore/flatfs/flatfs.go
+@@ -12,10 +12,10 @@ import (
+ 	"strings"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/query"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-os-rename"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("flatfs")
+diff --git a/blocks/blockstore/blockstore.go b/blocks/blockstore/blockstore.go
+index c4eefad..642d31d 100644
+--- a/blocks/blockstore/blockstore.go
++++ b/blocks/blockstore/blockstore.go
+@@ -5,6 +5,7 @@ package blockstore
+ import (
+ 	"errors"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	dsns "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/namespace"
+ 	dsq "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/query"
+@@ -12,7 +13,6 @@ import (
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	blocks "github.com/ipfs/go-ipfs/blocks"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("blockstore")
+diff --git a/blocks/set/set.go b/blocks/set/set.go
+index 16d3772..9833c2d 100644
+--- a/blocks/set/set.go
++++ b/blocks/set/set.go
+@@ -2,9 +2,9 @@
+ package set
+ 
+ import (
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/blocks/bloom"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("blockset")
+diff --git a/blockservice/blockservice.go b/blockservice/blockservice.go
+index 9c5cc00..43d9b78 100644
+--- a/blockservice/blockservice.go
++++ b/blockservice/blockservice.go
+@@ -6,12 +6,12 @@ package blockservice
+ import (
+ 	"errors"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	blocks "github.com/ipfs/go-ipfs/blocks"
+ 	"github.com/ipfs/go-ipfs/blocks/blockstore"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	exchange "github.com/ipfs/go-ipfs/exchange"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("blockservice")
+diff --git a/cmd/ipfs/main.go b/cmd/ipfs/main.go
+index 81d908f..37db3e5 100644
+--- a/cmd/ipfs/main.go
++++ b/cmd/ipfs/main.go
+@@ -20,6 +20,7 @@ import (
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	cmds "github.com/ipfs/go-ipfs/commands"
+ 	cmdsCli "github.com/ipfs/go-ipfs/commands/cli"
+@@ -30,7 +31,6 @@ import (
+ 	config "github.com/ipfs/go-ipfs/repo/config"
+ 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ // log is the command logger
+diff --git a/cmd/seccat/seccat.go b/cmd/seccat/seccat.go
+index ac1829a..59ae9f9 100644
+--- a/cmd/seccat/seccat.go
++++ b/cmd/seccat/seccat.go
+@@ -18,11 +18,11 @@ import (
+ 	"os/signal"
+ 	"syscall"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	ci "github.com/ipfs/go-ipfs/p2p/crypto"
+ 	secio "github.com/ipfs/go-ipfs/p2p/crypto/secio"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var verbose = false
+diff --git a/cmd/seccat/util.go b/cmd/seccat/util.go
+index 6f09574..2c14224 100644
+--- a/cmd/seccat/util.go
++++ b/cmd/seccat/util.go
+@@ -5,7 +5,7 @@ import (
+ 	"io"
+ 	"os"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("seccat")
+diff --git a/commands/command.go b/commands/command.go
+index 84cb05c..b9a1518 100644
+--- a/commands/command.go
++++ b/commands/command.go
+@@ -15,7 +15,7 @@ import (
+ 	"reflect"
+ 	"strings"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("command")
+diff --git a/commands/http/handler.go b/commands/http/handler.go
+index 4a59bb8..d7bd599 100644
+--- a/commands/http/handler.go
++++ b/commands/http/handler.go
+@@ -15,8 +15,8 @@ import (
+ 	cors "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/rs/cors"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	cmds "github.com/ipfs/go-ipfs/commands"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("commands/http")
+@@ -150,9 +150,11 @@ func (i internalHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+ 	ctx, cancel := context.WithCancel(node.Context())
+ 	defer cancel()
+ 	if cn, ok := w.(http.CloseNotifier); ok {
++		clientGone := cn.CloseNotify()
+ 		go func() {
+ 			select {
+-			case <-cn.CloseNotify():
++			case <-clientGone:
++			//case <-cn.CloseNotify():
+ 			case <-ctx.Done():
+ 			}
+ 			cancel()
+diff --git a/core/commands/log.go b/core/commands/log.go
+index 0b0a7b9..0bbc979 100644
+--- a/core/commands/log.go
++++ b/core/commands/log.go
+@@ -4,8 +4,8 @@ import (
+ 	"fmt"
+ 	"io"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	cmds "github.com/ipfs/go-ipfs/commands"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ // Golang os.Args overrides * and replaces the character argument with
+diff --git a/core/commands/root.go b/core/commands/root.go
+index cfe25de..32b4b9d 100644
+--- a/core/commands/root.go
++++ b/core/commands/root.go
+@@ -4,9 +4,9 @@ import (
+ 	"io"
+ 	"strings"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	cmds "github.com/ipfs/go-ipfs/commands"
+ 	unixfs "github.com/ipfs/go-ipfs/core/commands/unixfs"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("core/commands")
+diff --git a/core/core.go b/core/core.go
+index fbbfc35..05c4042 100644
+--- a/core/core.go
++++ b/core/core.go
+@@ -16,6 +16,7 @@ import (
+ 	"net"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	b58 "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-base58"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+@@ -33,7 +34,6 @@ import (
+ 	addrutil "github.com/ipfs/go-ipfs/p2p/net/swarm/addr"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	ping "github.com/ipfs/go-ipfs/p2p/protocol/ping"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	routing "github.com/ipfs/go-ipfs/routing"
+ 	dht "github.com/ipfs/go-ipfs/routing/dht"
+diff --git a/core/corehttp/corehttp.go b/core/corehttp/corehttp.go
+index 155f532..e9fd5bd 100644
+--- a/core/corehttp/corehttp.go
++++ b/core/corehttp/corehttp.go
+@@ -10,11 +10,11 @@ import (
+ 	"net/http"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 	core "github.com/ipfs/go-ipfs/core"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("core/server")
+diff --git a/core/corehttp/logs.go b/core/corehttp/logs.go
+index 6964a2f..76d9cf2 100644
+--- a/core/corehttp/logs.go
++++ b/core/corehttp/logs.go
+@@ -5,8 +5,8 @@ import (
+ 	"net"
+ 	"net/http"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	core "github.com/ipfs/go-ipfs/core"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ type writeErrNotifier struct {
+diff --git a/core/corerepo/gc.go b/core/corerepo/gc.go
+index c041b2e..3f81dbc 100644
+--- a/core/corerepo/gc.go
++++ b/core/corerepo/gc.go
+@@ -4,12 +4,12 @@ import (
+ 	"errors"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	humanize "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/dustin/go-humanize"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	"github.com/ipfs/go-ipfs/core"
+ 	repo "github.com/ipfs/go-ipfs/repo"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("corerepo")
+diff --git a/core/coreunix/add.go b/core/coreunix/add.go
+index 2a0a354..31935b7 100644
+--- a/core/coreunix/add.go
++++ b/core/coreunix/add.go
+@@ -8,6 +8,7 @@ import (
+ 
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/commands/files"
+ 	core "github.com/ipfs/go-ipfs/core"
+ 	importer "github.com/ipfs/go-ipfs/importer"
+@@ -15,7 +16,6 @@ import (
+ 	merkledag "github.com/ipfs/go-ipfs/merkledag"
+ 	"github.com/ipfs/go-ipfs/pin"
+ 	unixfs "github.com/ipfs/go-ipfs/unixfs"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("coreunix")
+diff --git a/diagnostics/diag.go b/diagnostics/diag.go
+index 5ffa4ed..3c86ae8 100644
+--- a/diagnostics/diag.go
++++ b/diagnostics/diag.go
+@@ -11,6 +11,7 @@ import (
+ 	"sync"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ggio "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/io"
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 	ctxio "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-context/io"
+@@ -20,7 +21,6 @@ import (
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	protocol "github.com/ipfs/go-ipfs/p2p/protocol"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("diagnostics")
+diff --git a/exchange/bitswap/bitswap.go b/exchange/bitswap/bitswap.go
+index 7d7954e..70e0ff8 100644
+--- a/exchange/bitswap/bitswap.go
++++ b/exchange/bitswap/bitswap.go
+@@ -8,6 +8,7 @@ import (
+ 	"sync"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	process "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 	procctx "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess/context"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+@@ -22,7 +23,6 @@ import (
+ 	wantlist "github.com/ipfs/go-ipfs/exchange/bitswap/wantlist"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	"github.com/ipfs/go-ipfs/thirdparty/delay"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("bitswap")
+diff --git a/exchange/bitswap/decision/engine.go b/exchange/bitswap/decision/engine.go
+index 03c13d9..fb4856d 100644
+--- a/exchange/bitswap/decision/engine.go
++++ b/exchange/bitswap/decision/engine.go
+@@ -4,13 +4,13 @@ package decision
+ import (
+ 	"sync"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	blocks "github.com/ipfs/go-ipfs/blocks"
+ 	bstore "github.com/ipfs/go-ipfs/blocks/blockstore"
+ 	bsmsg "github.com/ipfs/go-ipfs/exchange/bitswap/message"
+ 	wl "github.com/ipfs/go-ipfs/exchange/bitswap/wantlist"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ // TODO consider taking responsibility for other types of requests. For
+diff --git a/exchange/bitswap/network/ipfs_impl.go b/exchange/bitswap/network/ipfs_impl.go
+index e97211f..2726e1c 100644
+--- a/exchange/bitswap/network/ipfs_impl.go
++++ b/exchange/bitswap/network/ipfs_impl.go
+@@ -1,6 +1,7 @@
+ package network
+ 
+ import (
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+@@ -9,7 +10,6 @@ import (
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	routing "github.com/ipfs/go-ipfs/routing"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("bitswap_network")
+diff --git a/exchange/bitswap/workers.go b/exchange/bitswap/workers.go
+index 04d9fc2..456a571 100644
+--- a/exchange/bitswap/workers.go
++++ b/exchange/bitswap/workers.go
+@@ -7,8 +7,8 @@ import (
+ 	procctx "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess/context"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var TaskWorkerCount = 8
+diff --git a/exchange/reprovide/reprovide.go b/exchange/reprovide/reprovide.go
+index 51daf6f..ed3302d 100644
+--- a/exchange/reprovide/reprovide.go
++++ b/exchange/reprovide/reprovide.go
+@@ -4,11 +4,11 @@ import (
+ 	"fmt"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	backoff "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/cenkalti/backoff"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	blocks "github.com/ipfs/go-ipfs/blocks/blockstore"
+ 	routing "github.com/ipfs/go-ipfs/routing"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("reprovider")
+diff --git a/fuse/ipns/ipns_unix.go b/fuse/ipns/ipns_unix.go
+index fd3e3a3..ef3526e 100644
+--- a/fuse/ipns/ipns_unix.go
++++ b/fuse/ipns/ipns_unix.go
+@@ -10,10 +10,10 @@ import (
+ 	"os"
+ 	"strings"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	fuse "github.com/ipfs/go-ipfs/Godeps/_workspace/src/bazil.org/fuse"
+ 	fs "github.com/ipfs/go-ipfs/Godeps/_workspace/src/bazil.org/fuse/fs"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	core "github.com/ipfs/go-ipfs/core"
+diff --git a/fuse/mount/mount.go b/fuse/mount/mount.go
+index a732f67..10e709a 100644
+--- a/fuse/mount/mount.go
++++ b/fuse/mount/mount.go
+@@ -10,7 +10,7 @@ import (
+ 
+ 	goprocess "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("mount")
+diff --git a/fuse/readonly/readonly_unix.go b/fuse/readonly/readonly_unix.go
+index ffd32b3..74eec9e 100644
+--- a/fuse/readonly/readonly_unix.go
++++ b/fuse/readonly/readonly_unix.go
+@@ -9,6 +9,7 @@ import (
+ 	"os"
+ 	"syscall"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	fuse "github.com/ipfs/go-ipfs/Godeps/_workspace/src/bazil.org/fuse"
+ 	fs "github.com/ipfs/go-ipfs/Godeps/_workspace/src/bazil.org/fuse/fs"
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+@@ -19,7 +20,6 @@ import (
+ 	uio "github.com/ipfs/go-ipfs/unixfs/io"
+ 	ftpb "github.com/ipfs/go-ipfs/unixfs/pb"
+ 	lgbl "github.com/ipfs/go-ipfs/util/eventlog/loggables"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("fuse/ipfs")
+diff --git a/importer/chunk/splitting.go b/importer/chunk/splitting.go
+index a2f1dac..8af01fa 100644
+--- a/importer/chunk/splitting.go
++++ b/importer/chunk/splitting.go
+@@ -4,7 +4,7 @@ package chunk
+ import (
+ 	"io"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("chunk")
+diff --git a/importer/importer.go b/importer/importer.go
+index 33e0b67..9db66ed 100644
+--- a/importer/importer.go
++++ b/importer/importer.go
+@@ -6,6 +6,7 @@ import (
+ 	"fmt"
+ 	"os"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/commands/files"
+ 	bal "github.com/ipfs/go-ipfs/importer/balanced"
+ 	"github.com/ipfs/go-ipfs/importer/chunk"
+@@ -13,7 +14,6 @@ import (
+ 	trickle "github.com/ipfs/go-ipfs/importer/trickle"
+ 	dag "github.com/ipfs/go-ipfs/merkledag"
+ 	"github.com/ipfs/go-ipfs/pin"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("importer")
+diff --git a/ipnsfs/system.go b/ipnsfs/system.go
+index 4fe935d..73d17ed 100644
+--- a/ipnsfs/system.go
++++ b/ipnsfs/system.go
+@@ -24,8 +24,8 @@ import (
+ 	pin "github.com/ipfs/go-ipfs/pin"
+ 	ft "github.com/ipfs/go-ipfs/unixfs"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("ipnsfs")
+diff --git a/merkledag/merkledag.go b/merkledag/merkledag.go
+index da921ed..ba99019 100644
+--- a/merkledag/merkledag.go
++++ b/merkledag/merkledag.go
+@@ -5,11 +5,11 @@ import (
+ 	"fmt"
+ 	"sync"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	blocks "github.com/ipfs/go-ipfs/blocks"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	bserv "github.com/ipfs/go-ipfs/blockservice"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("merkledag")
+diff --git a/namesys/republisher/repub.go b/namesys/republisher/repub.go
+index b633f45..8646aa4 100644
+--- a/namesys/republisher/repub.go
++++ b/namesys/republisher/repub.go
+@@ -13,12 +13,12 @@ import (
+ 	"github.com/ipfs/go-ipfs/routing"
+ 	dhtpb "github.com/ipfs/go-ipfs/routing/dht/pb"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	goprocess "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 	gpctx "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess/context"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var errNoEntry = errors.New("no previous entry")
+diff --git a/namesys/routing.go b/namesys/routing.go
+index 85ef498..a3cb8ab 100644
+--- a/namesys/routing.go
++++ b/namesys/routing.go
+@@ -9,12 +9,12 @@ import (
+ 	mh "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multihash"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	pb "github.com/ipfs/go-ipfs/namesys/pb"
+ 	path "github.com/ipfs/go-ipfs/path"
+ 	routing "github.com/ipfs/go-ipfs/routing"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("namesys")
+diff --git a/p2p/crypto/key.go b/p2p/crypto/key.go
+index 177ab18..061e05f 100644
+--- a/p2p/crypto/key.go
++++ b/p2p/crypto/key.go
+@@ -21,9 +21,9 @@ import (
+ 
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	pb "github.com/ipfs/go-ipfs/p2p/crypto/pb"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("crypto")
+diff --git a/p2p/crypto/secio/protocol.go b/p2p/crypto/secio/protocol.go
+index ddb2233..7da6740 100644
+--- a/p2p/crypto/secio/protocol.go
++++ b/p2p/crypto/secio/protocol.go
+@@ -9,13 +9,13 @@ import (
+ 	"sync"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	msgio "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-msgio"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	ci "github.com/ipfs/go-ipfs/p2p/crypto"
+ 	pb "github.com/ipfs/go-ipfs/p2p/crypto/secio/pb"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("secio")
+diff --git a/p2p/discovery/mdns.go b/p2p/discovery/mdns.go
+index 61312fe..73f43bf 100644
+--- a/p2p/discovery/mdns.go
++++ b/p2p/discovery/mdns.go
+@@ -13,9 +13,9 @@ import (
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/p2p/host"
+ 	"github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("mdns")
+diff --git a/p2p/host/basic/basic_host.go b/p2p/host/basic/basic_host.go
+index e5a294f..9f46bf8 100644
+--- a/p2p/host/basic/basic_host.go
++++ b/p2p/host/basic/basic_host.go
+@@ -3,12 +3,12 @@ package basichost
+ import (
+ 	"io"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	goprocess "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	metrics "github.com/ipfs/go-ipfs/metrics"
+ 	mstream "github.com/ipfs/go-ipfs/metrics/stream"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+diff --git a/p2p/host/host.go b/p2p/host/host.go
+index 066b009..20c42bc 100644
+--- a/p2p/host/host.go
++++ b/p2p/host/host.go
+@@ -1,13 +1,13 @@
+ package host
+ 
+ import (
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	metrics "github.com/ipfs/go-ipfs/metrics"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	protocol "github.com/ipfs/go-ipfs/p2p/protocol"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("p2p/host")
+diff --git a/p2p/host/routed/routed.go b/p2p/host/routed/routed.go
+index 28c93a2..8bf2cbc 100644
+--- a/p2p/host/routed/routed.go
++++ b/p2p/host/routed/routed.go
+@@ -4,10 +4,10 @@ import (
+ 	"fmt"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	lgbl "github.com/ipfs/go-ipfs/util/eventlog/loggables"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	metrics "github.com/ipfs/go-ipfs/metrics"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+diff --git a/p2p/nat/nat.go b/p2p/nat/nat.go
+index 7ba8499..eb19060 100644
+--- a/p2p/nat/nat.go
++++ b/p2p/nat/nat.go
+@@ -11,11 +11,11 @@ import (
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	nat "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/fd/go-nat"
+ 	goprocess "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 	periodic "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess/periodic"
+ 	notifier "github.com/ipfs/go-ipfs/thirdparty/notifier"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var (
+diff --git a/p2p/net/conn/conn.go b/p2p/net/conn/conn.go
+index e7909ca..6c8fc0c 100644
+--- a/p2p/net/conn/conn.go
++++ b/p2p/net/conn/conn.go
+@@ -6,6 +6,7 @@ import (
+ 	"net"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	msgio "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-msgio"
+ 	mpool "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-msgio/mpool"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+@@ -15,7 +16,6 @@ import (
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	u "github.com/ipfs/go-ipfs/util"
+ 	lgbl "github.com/ipfs/go-ipfs/util/eventlog/loggables"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("conn")
+diff --git a/p2p/net/mock/mock.go b/p2p/net/mock/mock.go
+index 0e6c3f5..3809ba5 100644
+--- a/p2p/net/mock/mock.go
++++ b/p2p/net/mock/mock.go
+@@ -1,7 +1,7 @@
+ package mocknet
+ 
+ import (
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ )
+diff --git a/p2p/net/swarm/addr/addr.go b/p2p/net/swarm/addr/addr.go
+index facd571..3e05aea 100644
+--- a/p2p/net/swarm/addr/addr.go
++++ b/p2p/net/swarm/addr/addr.go
+@@ -3,7 +3,7 @@ package addrutil
+ import (
+ 	"fmt"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+diff --git a/p2p/net/swarm/swarm.go b/p2p/net/swarm/swarm.go
+index dabcf53..3727d67 100644
+--- a/p2p/net/swarm/swarm.go
++++ b/p2p/net/swarm/swarm.go
+@@ -7,6 +7,7 @@ import (
+ 	"sync"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	metrics "github.com/ipfs/go-ipfs/metrics"
+ 	mconn "github.com/ipfs/go-ipfs/metrics/conn"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+@@ -15,7 +16,6 @@ import (
+ 	addrutil "github.com/ipfs/go-ipfs/p2p/net/swarm/addr"
+ 	transport "github.com/ipfs/go-ipfs/p2p/net/transport"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	ps "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-peerstream"
+diff --git a/p2p/net/transport/transport.go b/p2p/net/transport/transport.go
+index e75f430..aa506a8 100644
+--- a/p2p/net/transport/transport.go
++++ b/p2p/net/transport/transport.go
+@@ -4,9 +4,9 @@ import (
+ 	"net"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("transport")
+diff --git a/p2p/peer/peer.go b/p2p/peer/peer.go
+index a7b403b..24c985b 100644
+--- a/p2p/peer/peer.go
++++ b/p2p/peer/peer.go
+@@ -11,9 +11,9 @@ import (
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	mh "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multihash"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ic "github.com/ipfs/go-ipfs/p2p/crypto"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("peer")
+diff --git a/p2p/peer/queue/sync.go b/p2p/peer/queue/sync.go
+index da7377a..9996481 100644
+--- a/p2p/peer/queue/sync.go
++++ b/p2p/peer/queue/sync.go
+@@ -1,9 +1,9 @@
+ package queue
+ 
+ import (
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("peerqueue")
+diff --git a/p2p/protocol/identify/id.go b/p2p/protocol/identify/id.go
+index ac8b447..ce42a93 100644
+--- a/p2p/protocol/identify/id.go
++++ b/p2p/protocol/identify/id.go
+@@ -9,6 +9,7 @@ import (
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	mstream "github.com/ipfs/go-ipfs/metrics/stream"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+@@ -17,7 +18,6 @@ import (
+ 	pb "github.com/ipfs/go-ipfs/p2p/protocol/identify/pb"
+ 	config "github.com/ipfs/go-ipfs/repo/config"
+ 	lgbl "github.com/ipfs/go-ipfs/util/eventlog/loggables"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("net/identify")
+diff --git a/p2p/protocol/mux.go b/p2p/protocol/mux.go
+index 75286b7..d65c1a2 100644
+--- a/p2p/protocol/mux.go
++++ b/p2p/protocol/mux.go
+@@ -5,10 +5,10 @@ import (
+ 	"io"
+ 	"sync"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	lgbl "github.com/ipfs/go-ipfs/util/eventlog/loggables"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("net/mux")
+diff --git a/p2p/protocol/ping/ping.go b/p2p/protocol/ping/ping.go
+index c5e5a8a..9a179f1 100644
+--- a/p2p/protocol/ping/ping.go
++++ b/p2p/protocol/ping/ping.go
+@@ -8,11 +8,11 @@ import (
+ 
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("ping")
+diff --git a/p2p/protocol/relay/relay.go b/p2p/protocol/relay/relay.go
+index d76f57f..1702a98 100644
+--- a/p2p/protocol/relay/relay.go
++++ b/p2p/protocol/relay/relay.go
+@@ -6,11 +6,11 @@ import (
+ 
+ 	mh "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multihash"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	protocol "github.com/ipfs/go-ipfs/p2p/protocol"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("p2p/protocol/relay")
+diff --git a/p2p/protocol/relay/relay_test.go b/p2p/protocol/relay/relay_test.go
+index aecdfad..80882ea 100644
+--- a/p2p/protocol/relay/relay_test.go
++++ b/p2p/protocol/relay/relay_test.go
+@@ -4,11 +4,11 @@ import (
+ 	"io"
+ 	"testing"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	protocol "github.com/ipfs/go-ipfs/p2p/protocol"
+ 	relay "github.com/ipfs/go-ipfs/p2p/protocol/relay"
+ 	testutil "github.com/ipfs/go-ipfs/p2p/test/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ )
+diff --git a/p2p/test/backpressure/backpressure_test.go b/p2p/test/backpressure/backpressure_test.go
+index bacdcec..a29d305 100644
+--- a/p2p/test/backpressure/backpressure_test.go
++++ b/p2p/test/backpressure/backpressure_test.go
+@@ -6,12 +6,12 @@ import (
+ 	"testing"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	protocol "github.com/ipfs/go-ipfs/p2p/protocol"
+ 	testutil "github.com/ipfs/go-ipfs/p2p/test/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	u "github.com/ipfs/go-ipfs/util"
+diff --git a/p2p/test/reconnects/reconnect_test.go b/p2p/test/reconnects/reconnect_test.go
+index ae23552..d2d211a 100644
+--- a/p2p/test/reconnects/reconnect_test.go
++++ b/p2p/test/reconnects/reconnect_test.go
+@@ -7,13 +7,13 @@ import (
+ 	"testing"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	swarm "github.com/ipfs/go-ipfs/p2p/net/swarm"
+ 	protocol "github.com/ipfs/go-ipfs/p2p/protocol"
+ 	testutil "github.com/ipfs/go-ipfs/p2p/test/util"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	ps "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-peerstream"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+diff --git a/p2p/test/util/key.go b/p2p/test/util/key.go
+index 9f1a7a1..5408635 100644
+--- a/p2p/test/util/key.go
++++ b/p2p/test/util/key.go
+@@ -5,9 +5,9 @@ import (
+ 	"io"
+ 	"testing"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	u "github.com/ipfs/go-ipfs/util"
+ 	testutil "github.com/ipfs/go-ipfs/util/testutil"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	ic "github.com/ipfs/go-ipfs/p2p/crypto"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+diff --git a/path/resolver.go b/path/resolver.go
+index 4ed7b67..3a65a77 100644
+--- a/path/resolver.go
++++ b/path/resolver.go
+@@ -9,9 +9,9 @@ import (
+ 	mh "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multihash"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	merkledag "github.com/ipfs/go-ipfs/merkledag"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("path")
+diff --git a/pin/pin.go b/pin/pin.go
+index 53d965e..dc2a773 100644
+--- a/pin/pin.go
++++ b/pin/pin.go
+@@ -8,13 +8,13 @@ import (
+ 	"fmt"
+ 	"sync"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	nsds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/namespace"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	"github.com/ipfs/go-ipfs/blocks/set"
+ 	mdag "github.com/ipfs/go-ipfs/merkledag"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("pin")
+diff --git a/repo/config/config.go b/repo/config/config.go
+index d8f5720..fadfb71 100644
+--- a/repo/config/config.go
++++ b/repo/config/config.go
+@@ -9,8 +9,8 @@ import (
+ 	"path/filepath"
+ 	"strings"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	u "github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("config")
+diff --git a/repo/fsrepo/fsrepo.go b/repo/fsrepo/fsrepo.go
+index c62e515..c137ae5 100644
+--- a/repo/fsrepo/fsrepo.go
++++ b/repo/fsrepo/fsrepo.go
+@@ -10,6 +10,7 @@ import (
+ 	"strings"
+ 	"sync"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/flatfs"
+ 	levelds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/leveldb"
+@@ -25,7 +26,6 @@ import (
+ 	dir "github.com/ipfs/go-ipfs/thirdparty/dir"
+ 	util "github.com/ipfs/go-ipfs/util"
+ 	ds2 "github.com/ipfs/go-ipfs/util/datastore2"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("fsrepo")
+diff --git a/repo/fsrepo/serialize/serialize.go b/repo/fsrepo/serialize/serialize.go
+index 01458fe..fca6642 100644
+--- a/repo/fsrepo/serialize/serialize.go
++++ b/repo/fsrepo/serialize/serialize.go
+@@ -8,10 +8,10 @@ import (
+ 	"os"
+ 	"path/filepath"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/facebookgo/atomicfile"
+ 	"github.com/ipfs/go-ipfs/repo/config"
+ 	"github.com/ipfs/go-ipfs/util"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("fsrepo")
+diff --git a/routing/dht/dht.go b/routing/dht/dht.go
+index 3f50652..60a4d8a 100644
+--- a/routing/dht/dht.go
++++ b/routing/dht/dht.go
+@@ -9,6 +9,7 @@ import (
+ 	"sync"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	ci "github.com/ipfs/go-ipfs/p2p/crypto"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+@@ -18,7 +19,6 @@ import (
+ 	pb "github.com/ipfs/go-ipfs/routing/dht/pb"
+ 	kb "github.com/ipfs/go-ipfs/routing/kbucket"
+ 	record "github.com/ipfs/go-ipfs/routing/record"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+diff --git a/routing/dht/pb/message.go b/routing/dht/pb/message.go
+index f780b1b..6574825 100644
+--- a/routing/dht/pb/message.go
++++ b/routing/dht/pb/message.go
+@@ -3,10 +3,10 @@ package dht_pb
+ import (
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("dht.pb")
+diff --git a/routing/dht/query.go b/routing/dht/query.go
+index d64e432..cd284a7 100644
+--- a/routing/dht/query.go
++++ b/routing/dht/query.go
+@@ -3,6 +3,7 @@ package dht
+ import (
+ 	"sync"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	notif "github.com/ipfs/go-ipfs/notifications"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+@@ -11,7 +12,6 @@ import (
+ 	u "github.com/ipfs/go-ipfs/util"
+ 	pset "github.com/ipfs/go-ipfs/util/peerset"
+ 	todoctr "github.com/ipfs/go-ipfs/util/todocounter"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	process "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess"
+ 	ctxproc "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/goprocess/context"
+diff --git a/routing/kbucket/table.go b/routing/kbucket/table.go
+index 044d3a2..812af0a 100644
+--- a/routing/kbucket/table.go
++++ b/routing/kbucket/table.go
+@@ -7,8 +7,8 @@ import (
+ 	"sync"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("table")
+diff --git a/routing/mock/centralized_client.go b/routing/mock/centralized_client.go
+index e7aa449..47ba1d2 100644
+--- a/routing/mock/centralized_client.go
++++ b/routing/mock/centralized_client.go
+@@ -4,6 +4,7 @@ import (
+ 	"errors"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+@@ -14,7 +15,6 @@ import (
+ 	dhtpb "github.com/ipfs/go-ipfs/routing/dht/pb"
+ 	u "github.com/ipfs/go-ipfs/util"
+ 	"github.com/ipfs/go-ipfs/util/testutil"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("mockrouter")
+diff --git a/routing/none/none_client.go b/routing/none/none_client.go
+index efa0b8a..861a583 100644
+--- a/routing/none/none_client.go
++++ b/routing/none/none_client.go
+@@ -3,13 +3,13 @@ package nilrouting
+ import (
+ 	"errors"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	p2phost "github.com/ipfs/go-ipfs/p2p/host"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	routing "github.com/ipfs/go-ipfs/routing"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("mockrouter")
+diff --git a/routing/offline/offline.go b/routing/offline/offline.go
+index 54f2bb8..d915d14 100644
+--- a/routing/offline/offline.go
++++ b/routing/offline/offline.go
+@@ -4,6 +4,7 @@ import (
+ 	"errors"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 	ds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+@@ -13,7 +14,6 @@ import (
+ 	routing "github.com/ipfs/go-ipfs/routing"
+ 	pb "github.com/ipfs/go-ipfs/routing/dht/pb"
+ 	record "github.com/ipfs/go-ipfs/routing/record"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("offlinerouting")
+diff --git a/routing/record/record.go b/routing/record/record.go
+index 944f615..3b786b8 100644
+--- a/routing/record/record.go
++++ b/routing/record/record.go
+@@ -5,10 +5,10 @@ import (
+ 
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	ci "github.com/ipfs/go-ipfs/p2p/crypto"
+ 	pb "github.com/ipfs/go-ipfs/routing/dht/pb"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("routing/record")
+diff --git a/routing/supernode/client.go b/routing/supernode/client.go
+index 5b7c4a3..10829cd 100644
+--- a/routing/supernode/client.go
++++ b/routing/supernode/client.go
+@@ -8,13 +8,13 @@ import (
+ 	proto "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	"github.com/ipfs/go-ipfs/p2p/host"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	routing "github.com/ipfs/go-ipfs/routing"
+ 	pb "github.com/ipfs/go-ipfs/routing/dht/pb"
+ 	proxy "github.com/ipfs/go-ipfs/routing/supernode/proxy"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("supernode")
+diff --git a/routing/supernode/proxy/standard.go b/routing/supernode/proxy/standard.go
+index 279cbe7..7bd4a67 100644
+--- a/routing/supernode/proxy/standard.go
++++ b/routing/supernode/proxy/standard.go
+@@ -6,13 +6,13 @@ import (
+ 	ggio "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/gogo/protobuf/io"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	host "github.com/ipfs/go-ipfs/p2p/host"
+ 	inet "github.com/ipfs/go-ipfs/p2p/net"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ 	dhtpb "github.com/ipfs/go-ipfs/routing/dht/pb"
+ 	kbucket "github.com/ipfs/go-ipfs/routing/kbucket"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ const ProtocolSNR = "/ipfs/supernoderouting"
+diff --git a/tar/format.go b/tar/format.go
+index 8e59f02..37b1382 100644
+--- a/tar/format.go
++++ b/tar/format.go
+@@ -8,12 +8,12 @@ import (
+ 	"io/ioutil"
+ 	"strings"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	importer "github.com/ipfs/go-ipfs/importer"
+ 	chunk "github.com/ipfs/go-ipfs/importer/chunk"
+ 	dag "github.com/ipfs/go-ipfs/merkledag"
+ 	dagutil "github.com/ipfs/go-ipfs/merkledag/utils"
+ 	uio "github.com/ipfs/go-ipfs/unixfs/io"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ )
+diff --git a/test/integration/addcat_test.go b/test/integration/addcat_test.go
+index 848dbf4..759c558 100644
+--- a/test/integration/addcat_test.go
++++ b/test/integration/addcat_test.go
+@@ -13,6 +13,7 @@ import (
+ 	random "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-random"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/core"
+ 	coreunix "github.com/ipfs/go-ipfs/core/coreunix"
+ 	mock "github.com/ipfs/go-ipfs/core/mock"
+@@ -20,7 +21,6 @@ import (
+ 	"github.com/ipfs/go-ipfs/p2p/peer"
+ 	"github.com/ipfs/go-ipfs/thirdparty/unit"
+ 	testutil "github.com/ipfs/go-ipfs/util/testutil"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("epictest")
+diff --git a/test/supernode_client/main.go b/test/supernode_client/main.go
+index bffe18b..92ee95a 100644
+--- a/test/supernode_client/main.go
++++ b/test/supernode_client/main.go
+@@ -17,6 +17,7 @@ import (
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 	"github.com/ipfs/go-ipfs/util/ipfsaddr"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	"github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore"
+ 	syncds "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-datastore/sync"
+ 	commands "github.com/ipfs/go-ipfs/commands"
+@@ -30,7 +31,6 @@ import (
+ 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
+ 	unit "github.com/ipfs/go-ipfs/thirdparty/unit"
+ 	ds2 "github.com/ipfs/go-ipfs/util/datastore2"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var elog = logging.Logger("gc-client")
+diff --git a/thirdparty/pollEndpoint/main.go b/thirdparty/pollEndpoint/main.go
+index 6f6e11d..3beba57 100644
+--- a/thirdparty/pollEndpoint/main.go
++++ b/thirdparty/pollEndpoint/main.go
+@@ -10,9 +10,9 @@ import (
+ 	"os"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 	manet "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr-net"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var (
+diff --git a/tour/tour.go b/tour/tour.go
+index 3b81273..2391983 100644
+--- a/tour/tour.go
++++ b/tour/tour.go
+@@ -4,7 +4,7 @@ import (
+ 	"strconv"
+ 	"strings"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("tour")
+diff --git a/unixfs/mod/dagmodifier.go b/unixfs/mod/dagmodifier.go
+index 5f5eddc..81b88f2 100644
+--- a/unixfs/mod/dagmodifier.go
++++ b/unixfs/mod/dagmodifier.go
+@@ -10,6 +10,7 @@ import (
+ 	mh "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multihash"
+ 	context "github.com/ipfs/go-ipfs/Godeps/_workspace/src/golang.org/x/net/context"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	key "github.com/ipfs/go-ipfs/blocks/key"
+ 	imp "github.com/ipfs/go-ipfs/importer"
+ 	chunk "github.com/ipfs/go-ipfs/importer/chunk"
+@@ -19,7 +20,6 @@ import (
+ 	pin "github.com/ipfs/go-ipfs/pin"
+ 	ft "github.com/ipfs/go-ipfs/unixfs"
+ 	uio "github.com/ipfs/go-ipfs/unixfs/io"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var ErrSeekFail = errors.New("failed to seek properly")
+diff --git a/updates/updates.go b/updates/updates.go
+index f9b7598..7369ed3 100644
+--- a/updates/updates.go
++++ b/updates/updates.go
+@@ -6,9 +6,9 @@ import (
+ 	"os"
+ 	"time"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	config "github.com/ipfs/go-ipfs/repo/config"
+ 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	semver "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/coreos/go-semver/semver"
+ 	update "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/inconshreveable/go-update"
+diff --git a/util/eventlog/loggables/loggables.go b/util/eventlog/loggables/loggables.go
+index e758854..9d7be4a 100644
+--- a/util/eventlog/loggables/loggables.go
++++ b/util/eventlog/loggables/loggables.go
+@@ -11,7 +11,7 @@ import (
+ 
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+ )
+diff --git a/util/ipfsaddr/ipfsaddr.go b/util/ipfsaddr/ipfsaddr.go
+index dec0930..a32a16a 100644
+--- a/util/ipfsaddr/ipfsaddr.go
++++ b/util/ipfsaddr/ipfsaddr.go
+@@ -6,8 +6,8 @@ import (
+ 
+ 	ma "github.com/ipfs/go-ipfs/Godeps/_workspace/src/github.com/jbenet/go-multiaddr"
+ 
++	logging "QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+-	logging "github.com/ipfs/go-ipfs/vendor/QmQg1J6vikuXF9oDvm4wpdeAUvvkVEKW1EYDw9HhTMnP2b/go-log"
+ )
+ 
+ var log = logging.Logger("ipfsaddr")

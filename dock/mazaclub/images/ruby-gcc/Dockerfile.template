@@ -1,0 +1,6 @@
+FROM ${NAMESPACE}/gcc
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+
+RUN eselect ruby set ruby23 &> /dev/null

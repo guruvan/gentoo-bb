@@ -1,0 +1,8 @@
+FROM ${NAMESPACE}/bash
+MAINTAINER ${MAINTAINER}
+
+ADD rootfs.tar /
+VOLUME ["/go"]
+
+
+ENTRYPOINT ["/bin/bash"]
