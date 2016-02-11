@@ -1,19 +1,22 @@
-### guruvan/gcc:20160123
-Built: Thu Feb  4 04:26:25 UTC 2016
+### guruvan/gcc:20160204
+Built: Mon Feb  8 13:01:06 UTC 2016
 
-Image Size: 152.1 MB
+Image Size: 166.8 MB
 #### Installed
 Package | USE Flags
 --------|----------
 dev-libs/gmp-6.0.0a | `cxx -doc -pgo -static-libs`
 dev-libs/mpc-1.0.2-r1 | `-static-libs`
 dev-libs/mpfr-3.1.3_p4 | `-static-libs`
+sys-apps/gentoo-functions-0.10 | ``
 sys-devel/binutils-2.25.1-r1 | `cxx nls zlib (-multislot) -multitarget -static-libs {-test} -vanilla`
 sys-devel/binutils-config-4-r2 | ``
 sys-devel/gcc-4.9.3 | `cxx hardened nls nptl openmp (-altivec) (-awt) -cilk -debug -doc (-fixed-point) -fortran -gcj -go -graphite (-libssp) (-multilib) (-multislot) -nopie -nossp -objc -objc`
 sys-devel/gcc-config-1.7.3 | ``
 sys-devel/make-4.1-r1 | `nls -guile -static`
 sys-kernel/linux-headers-4.3 | ``
+sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
+sys-libs/timezone-data-2015g | `nls -leaps`
 #### Inherited
 Package | USE Flags
 --------|----------
@@ -45,12 +48,6 @@ dev-lang/execline-2.1.1.0 | `-static -static-libs`
 dev-libs/skalibs-2.3.2.0 | `-doc -ipv6 -static-libs`
 sys-apps/s6-2.1.3.0 | `-static`
 *manual install*: entr-3.4 | http://entrproject.org/
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [ ] Headers
 - [ ] Static Libs

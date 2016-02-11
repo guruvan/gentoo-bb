@@ -1,16 +1,23 @@
-### guruvan/jdk-oracle:20160123
-Built: Thu Feb  4 05:42:35 UTC 2016
+### guruvan/jdk-oracle:20160204
+Built: Mon Feb  8 16:03:32 UTC 2016
 
-Image Size: 524.4 MB
+Image Size: 561.3 MB
 #### Installed
 Package | USE Flags
 --------|----------
+app-arch/tar-1.27.1-r2 | `acl nls (xattr) -minimal (-selinux) -static`
 app-eselect/eselect-java-0.1.0 | ``
+app-misc/pax-utils-1.0.3 | `-caps -python`
 dev-java/java-config-2.2.0 | ` `
 dev-java/java-config-wrapper-0.16 | ``
 dev-java/oracle-jdk-bin-1.8.0.72-r1 | `headless-awt pax`
-dev-lang/python-exec-2.0.1-r1 | ` `
+dev-libs/popt-1.16-r2 | `nls -static-libs`
+dev-python/pyxattr-0.5.5 | `-doc {-test}`
+net-misc/rsync-3.1.2 | `acl iconv xattr -ipv6 -static -stunnel`
 sys-apps/baselayout-java-0.1.0 | ``
+sys-apps/install-xattr-0.5 | ``
+sys-apps/portage-2.2.26 | `(ipc) (xattr) -build -doc -epydoc (-selinux)`
+sys-apps/sandbox-2.10-r1 | `(-multilib)`
 #### Inherited
 Package | USE Flags
 --------|----------
@@ -18,12 +25,15 @@ Package | USE Flags
 dev-libs/gmp-6.0.0a | `cxx -doc -pgo -static-libs`
 dev-libs/mpc-1.0.2-r1 | `-static-libs`
 dev-libs/mpfr-3.1.3_p4 | `-static-libs`
+sys-apps/gentoo-functions-0.10 | ``
 sys-devel/binutils-2.25.1-r1 | `cxx nls zlib (-multislot) -multitarget -static-libs {-test} -vanilla`
 sys-devel/binutils-config-4-r2 | ``
 sys-devel/gcc-4.9.3 | `cxx hardened nls nptl openmp (-altivec) (-awt) -cilk -debug -doc (-fixed-point) -fortran -gcj -go -graphite (-libssp) (-multilib) (-multislot) -nopie -nossp -objc -objc`
 sys-devel/gcc-config-1.7.3 | ``
 sys-devel/make-4.1-r1 | `nls -guile -static`
 sys-kernel/linux-headers-4.3 | ``
+sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
+sys-libs/timezone-data-2015g | `nls -leaps`
 **FROM guruvan/bash** |
 app-admin/eselect-1.4.4 | `-doc -emacs -vim-syntax`
 app-arch/bzip2-1.0.6-r6 | `-static -static-libs`
@@ -52,12 +62,6 @@ dev-lang/execline-2.1.1.0 | `-static -static-libs`
 dev-libs/skalibs-2.3.2.0 | `-doc -ipv6 -static-libs`
 sys-apps/s6-2.1.3.0 | `-static`
 *manual install*: entr-3.4 | http://entrproject.org/
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [x] Headers
 - [x] Static Libs

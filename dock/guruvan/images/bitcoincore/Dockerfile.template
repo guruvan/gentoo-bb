@@ -2,11 +2,10 @@ FROM ${NAMESPACE}/bash
 MAINTAINER ${MAINTAINER}
 
 ADD rootfs.tar /
-#RUN mkdir -pv /etc/service/bitcoind
-RUN  mkdir -pv /home/coin/.bitcoin 
-RUN  mkdir -pr /etc/service/bitcoind
-ADD  home/coin/.bitcoin/* /home/coin/.bitcoin/
-ADD  etc/service/bitcoind/run /etc/service/bitcoind/run
+RUN  mkdir -pv /home/coin/.bitcoin/
+COPY home/coin/.bitcoin/* /home/coin/.bitcoin/
+RUN  mkdir -pv /etc/service/bitcoind
+ADD  etc/service/bitcoind/run  /etc/service/bitcoind/run
 COPY root/bitcoin.conf /root/bitcoin.conf
 
 EXPOSE 8333 8332

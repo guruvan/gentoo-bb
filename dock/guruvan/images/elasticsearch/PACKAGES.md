@@ -1,7 +1,7 @@
-### guruvan/elasticsearch:20160123
-Built: Thu Feb  4 05:08:45 UTC 2016
+### guruvan/elasticsearch:20160204
+Built: Mon Feb  8 13:22:08 UTC 2016
 
-Image Size: 221.3 MB
+Image Size: 258 MB
 #### Installed
 Package | USE Flags
 --------|----------
@@ -11,12 +11,22 @@ app-misc/elasticsearch-2.1.1 | ``
 Package | USE Flags
 --------|----------
 **FROM guruvan/jre-oracle** |
+app-arch/tar-1.27.1-r2 | `acl nls (xattr) -minimal (-selinux) -static`
 app-eselect/eselect-java-0.1.0 | ``
+app-misc/pax-utils-1.0.3 | `-caps -python`
 dev-java/java-config-2.2.0 | ` `
 dev-java/java-config-wrapper-0.16 | ``
 dev-java/oracle-jre-bin-1.8.0.72-r1 | `headless-awt pax`
-dev-lang/python-exec-2.0.1-r1 | ` `
+dev-libs/popt-1.16-r2 | `nls -static-libs`
+dev-python/pyxattr-0.5.5 | `-doc {-test}`
+net-misc/rsync-3.1.2 | `acl iconv xattr -ipv6 -static -stunnel`
 sys-apps/baselayout-java-0.1.0 | ``
+sys-apps/gentoo-functions-0.10 | ``
+sys-apps/install-xattr-0.5 | ``
+sys-apps/portage-2.2.26 | `(ipc) (xattr) -build -doc -epydoc (-selinux)`
+sys-apps/sandbox-2.10-r1 | `(-multilib)`
+sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
+sys-libs/timezone-data-2015g | `nls -leaps`
 **FROM guruvan/bash** |
 app-admin/eselect-1.4.4 | `-doc -emacs -vim-syntax`
 app-arch/bzip2-1.0.6-r6 | `-static -static-libs`
@@ -45,12 +55,6 @@ dev-lang/execline-2.1.1.0 | `-static -static-libs`
 dev-libs/skalibs-2.3.2.0 | `-doc -ipv6 -static-libs`
 sys-apps/s6-2.1.3.0 | `-static`
 *manual install*: entr-3.4 | http://entrproject.org/
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [x] Headers
 - [x] Static Libs

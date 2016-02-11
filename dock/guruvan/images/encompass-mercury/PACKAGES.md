@@ -1,7 +1,7 @@
-### guruvan/encompass-mercury:20160123
-Built: Thu Feb  4 05:21:39 UTC 2016
+### guruvan/encompass-mercury:20160204
+Built: Mon Feb  8 13:29:57 UTC 2016
 
-Image Size: 269.8 MB
+Image Size: 296.7 MB
 #### Installed
 Package | USE Flags
 --------|----------
@@ -17,12 +17,14 @@ Package | USE Flags
 **FROM /encompass-mercury** |
 **FROM guruvan/py2gcc** |
 app-admin/python-updater-0.11 | ``
+app-arch/tar-1.27.1-r2 | `acl nls (xattr) -minimal (-selinux) -static`
 app-crypt/gnupg-2.0.28 | `bzip2 nls readline -doc -ldap -mta (-selinux) -smartcard -static -tools -usb`
 app-crypt/pinentry-0.9.5 | `ncurses -caps -clipboard -emacs -gnome-keyring -gtk -qt4 -static`
 app-eselect/eselect-lib-bin-symlink-0.1.1 | ``
 app-eselect/eselect-pinentry-0.6 | ``
 app-eselect/eselect-python-20111108 | ``
 app-misc/mime-types-9 | ``
+app-misc/pax-utils-1.0.3 | `-caps -python`
 dev-db/sqlite-3.9.2 | `readline -debug -doc -icu -secure-delete -static-libs -tcl {-test} -tools`
 dev-lang/python-2.7.10-r1 | `hardened readline sqlite ssl threads (wide-unicode) xml (-berkdb) -build -doc -examples -gdbm -ipv6 -ncurses -tk -wininst`
 dev-lang/python-exec-2.0.1-r1 | ` `
@@ -35,6 +37,7 @@ dev-libs/libgpg-error-1.19 | `nls -common-lisp -static-libs`
 dev-libs/libksba-1.3.3 | `-static-libs`
 dev-libs/mpc-1.0.2-r1 | `-static-libs`
 dev-libs/mpfr-3.1.3_p4 | `-static-libs`
+dev-libs/popt-1.16-r2 | `nls -static-libs`
 dev-libs/pth-2.0.7-r3 | `-debug -static-libs`
 dev-python/CacheControl-0.11.5 | `{-test}`
 dev-python/certifi-2015.11.20 | ` `
@@ -57,17 +60,25 @@ dev-python/py-1.4.30 | `-doc {-test}`
 dev-python/pyasn1-0.1.8 | `-doc`
 dev-python/pycparser-2.14 | `{-test}`
 dev-python/pyopenssl-0.15.1-r1 | `-doc -examples`
+dev-python/pyxattr-0.5.5 | `-doc {-test}`
 dev-python/requests-2.8.1 | `{-test}`
 dev-python/retrying-1.3.3 | ` `
 dev-python/setuptools-18.4 | `{-test}`
 dev-python/six-1.10.0 | `-doc {-test}`
 dev-vcs/git-2.4.10 | `blksha1 curl gpg iconv nls pcre python threads webdav -cgi -cvs -doc -emacs -gnome-keyring -gtk -highlight -mediawiki -perl (-ppcsha1) -subversion {-test} -tk -xinetd`
+net-misc/rsync-3.1.2 | `acl iconv xattr -ipv6 -static -stunnel`
+sys-apps/gentoo-functions-0.10 | ``
+sys-apps/install-xattr-0.5 | ``
+sys-apps/portage-2.2.26 | `(ipc) (xattr) -build -doc -epydoc (-selinux)`
+sys-apps/sandbox-2.10-r1 | `(-multilib)`
 sys-devel/binutils-2.25.1-r1 | `cxx nls zlib (-multislot) -multitarget -static-libs {-test} -vanilla`
 sys-devel/binutils-config-4-r2 | ``
 sys-devel/gcc-4.9.3 | `cxx hardened nls nptl openmp (-altivec) (-awt) -cilk -debug -doc (-fixed-point) -fortran -gcj -go -graphite (-libssp) (-multilib) (-multislot) -nopie -nossp -objc -objc`
 sys-devel/gcc-config-1.7.3 | ``
 sys-devel/make-4.1-r1 | `nls -guile -static`
 sys-kernel/linux-headers-4.3 | ``
+sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
+sys-libs/timezone-data-2015g | `nls -leaps`
 **FROM guruvan/bash** |
 app-admin/eselect-1.4.4 | `-doc -emacs -vim-syntax`
 app-arch/bzip2-1.0.6-r6 | `-static -static-libs`
@@ -96,12 +107,6 @@ dev-lang/execline-2.1.1.0 | `-static -static-libs`
 dev-libs/skalibs-2.3.2.0 | `-doc -ipv6 -static-libs`
 sys-apps/s6-2.1.3.0 | `-static`
 *manual install*: entr-3.4 | http://entrproject.org/
-**FROM guruvan/glibc** |
-sys-apps/gentoo-functions-0.10 | ``
-sys-libs/glibc-2.21-r1 | `hardened -debug -gd (-multilib) -nscd (-profile) (-selinux) -suid -systemtap -vanilla`
-sys-libs/timezone-data-2015f | `nls -leaps`
-**FROM guruvan/busybox** |
-sys-apps/busybox-1.24.1 | `make-symlinks static -debug -ipv6 -livecd -math -mdev -pam -savedconfig (-selinux) -sep-usr -syslog -systemd`
 #### Purged
 - [x] Headers
 - [x] Static Libs
