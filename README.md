@@ -3,17 +3,14 @@ gentoo-bb
 
 ## Customizations from upstream
  
-  * uclibc busybox
-  * added images
-     - go-ipfs
-     - encompass-mercury (Any-Coin Electrum Server) 
-     - awstools
+ This branch is build with IPV6 support, and musl-libc
+ This is experimental! Use at your own peril! 
 
-  * 23 Jan 2016 snapshots
+
 
 Images are available: 
  ```
- docker pull guruvan/image-name
+ docker pull guruvan/musl-image-name
  ```
 
 Future update will include automated building (not via Dockerhub)
